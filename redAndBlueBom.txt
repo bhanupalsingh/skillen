@@ -1,0 +1,106 @@
+import java.util.*;
+
+class solution {
+    
+    
+    public static boolean isSafe(int i, int j , int m , int n){
+        if(i>=0 && i<m && j>=0 && j<n){
+            return true;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int test = sc.nextInt();
+        for (int t = 0; t < test; t++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            
+            char[][] arr = new char[a][b];
+            
+              
+            sc.nextLine();    
+            for(int i=0;i<a;i++){
+                //System.out.println(i);
+                String time = sc.nextLine();
+                //System.out.println(time);
+                for(int j=0;j<time.length();j++){
+                    arr[i][j] = time.charAt(j);
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+            for(int i=0;i<a;i++){
+                for(int j=0;j<b;j++){
+                    if(arr[i][j] == 'b' || arr[i][j] == 'r'){
+                        if(isSafe(i+1,j,a,b) && arr[i+1][j] == 'x'){
+                            arr[i+1][j] = 'z';
+                        }
+                        if(isSafe(i,j+1,a,b) && arr[i][j+1] == 'x'){
+                            arr[i][j+1] = 'z';
+                        }
+                        
+                        if(isSafe(i,j-1,a,b) && arr[i][j-1] == 'x'){
+                            arr[i][j-1] = 'z';
+                        }
+                        
+                        
+                        if(isSafe(i-1,j,a,b) && arr[i-1][j] == 'x'){
+                            arr[i-1][j] = 'z';
+                        }
+                        
+                        
+                        if(arr[i][j] == 'r'){
+                            if(isSafe(i+1,j+1,a,b) && arr[i+1][j+1] == 'x'){
+                                arr[i+1][j+1] = 'z';
+                            }
+                            
+                            if(isSafe(i-1,j-1,a,b) && arr[i-1][j-1] == 'x'){
+                                arr[i-1][j-1] = 'z';
+                            }
+                            
+                            if(isSafe(i-1,j+1,a,b) && arr[i-1][j+1] == 'x'){
+                                arr[i-1][j+1] = 'z';
+                            }
+                            
+                            
+                            if(isSafe(i+1,j-1,a,b) && arr[i+1][j-1] == 'x'){
+                                arr[i+1][j-1] = 'z';
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            
+            
+            int count = 0;
+            for(int i=0;i<a;i++){
+                for(int j=0;j<b;j++){
+                    //System.out.print(arr[i][j]);
+                    if(arr[i][j] == 'x'){
+                        count++;
+                    }
+                }
+                
+                //System.out.println();
+            }
+            
+            
+            System.out.println(count);
+            
+            
+            
+        }
+        
+       
+
+    }
+}
