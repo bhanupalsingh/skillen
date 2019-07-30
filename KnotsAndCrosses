@@ -1,0 +1,105 @@
+def count(a,i,j,k,m,n):
+    xfinalCount = 0;
+    ofinalCount = 0;
+   
+    xcount = 0;
+    ocount = 0;
+    if(j+k<=n):
+        for l in range(j,j+k):
+            if(a[i][l] == 'x'):
+                xcount += 1;
+            elif(a[i][l] == 'o'):
+                ocount += 1;
+                
+            if(xcount >= 1 and ocount >= 1):
+                break;
+        if(xcount == k):
+            xfinalCount += 1;
+        elif(ocount ==k ):
+            ofinalCount += 1;
+            
+    #print([xfinalCount,ofinalCount]); 
+   
+    xcount = 0;
+    ocount = 0;
+    if(i+k<=m):
+        for l in range(i,i+k):
+            if(a[l][j] == 'x'):
+                xcount += 1;
+            elif(a[l][j] == 'o'):
+                ocount += 1;
+                
+            if(xcount >= 1 and ocount >= 1):
+                break;
+        if(xcount ==k):
+            xfinalCount += 1;
+        elif(ocount ==k ):
+            ofinalCount += 1;
+            
+    #print([xfinalCount,ofinalCount]);
+            
+    xcount = 0;
+    ocount = 0;
+    if(i+k<=m and j+k <= n):
+        for l in range(0,k):
+            if(a[i+l][j+l] == 'x'):
+                xcount += 1;
+            elif(a[i+l][j+l] == 'o'):
+                ocount += 1;
+                
+            if(xcount >= 1 and ocount >= 1):
+                break;
+        if(xcount ==k):
+            xfinalCount += 1;
+        elif(ocount ==k ):
+            ofinalCount += 1;
+            
+    #print([xfinalCount,ofinalCount]);
+    xcount = 0;
+    ocount = 0;
+    if(i+k<=m and j-k >=-1):
+        for l in range(0,k):
+            if(a[i+l][j-l] == 'x'):
+                xcount += 1;
+            elif(a[i+l][j-l] == 'o'):
+                ocount += 1;
+                
+            if(xcount >= 1 and ocount >= 1):
+                break;
+        if(xcount ==k):
+            xfinalCount += 1;
+        elif(ocount ==k ):
+            ofinalCount += 1;
+            
+    #print([xfinalCount,ofinalCount]);
+        
+    print("for ",i , " and ",j , " x:",xfinalCount , " o:", ofinalCount);    
+    
+    return [xfinalCount,ofinalCount] ;
+    
+
+
+
+t = int(input())
+for x in range(t):
+    a, b , c = map(int, input().split());
+  
+  
+    arr = [['x'] * b] * a;
+    for i in range(a):
+        arr[i] = input().split();
+        
+    #print(arr)        
+    result = [0,0];
+    for i in range(a):
+        for j in range(b):
+            temp = count(arr,i,j,c,a,b);
+            result[0] = result[0] + temp[0];
+            result[1] = result[1] + temp[1];
+            
+            
+          
+    
+    
+      
+    print(result)
